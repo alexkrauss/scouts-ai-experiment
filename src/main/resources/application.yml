@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: Scouts AI experiment
+  datasource:
+    url: jdbc:postgresql://localhost:5432/scouts
+    username: scouts
+    password: scouts
+  flyway:
+    enabled: true
+
+management:
+  health:
+    db:
+      enabled: true
+    diskspace:
+      enabled: true
+  endpoint:
+    caches:
+      enabled: true
+    health:
+      show-details: always
+    prometheus:
+      enabled: true
+    loggers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus,loggers,caches

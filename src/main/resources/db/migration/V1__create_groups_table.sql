@@ -1,0 +1,5 @@
+CREATE TABLE groups (
+    id BIGSERIAL PRIMARY KEY,
+    version BIGINT NOT NULL DEFAULT 0,
+    name VARCHAR(255) NOT NULL
+);
