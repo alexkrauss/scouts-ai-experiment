@@ -58,12 +58,6 @@ micrometer API. We expose a prometheus endpoint.
 * Code coverage tracked with JaCoCo
 
 
-## Scalability
-
-* Stateless application design for horizontal scaling
-* Use of distributed caching to reduce database load
-* Consideration for future implementation of microservices architecture
-
 ## Internal service architecture.
 
 We use hexagonal architecture. The layout is as follows

@@ -22,8 +22,7 @@ Like all interfaces, the repositories have full javadoc.
 All repositories use optimistic locking, using the version field.
 
 When a locking error occurs, an OptimisticLockingFailureException is thrown, which is the Spring default.
-
-This exception should also be documented in the javadoc of the repository method.
+This exception should be documented in the javadoc of the repository method.
 
 ## Other errors
 
