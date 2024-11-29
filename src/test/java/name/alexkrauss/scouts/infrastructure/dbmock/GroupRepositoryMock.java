@@ -1,5 +1,6 @@
-package name.alexkrauss.scouts.application.ports.persistence;
+package name.alexkrauss.scouts.infrastructure.dbmock;
 
+import name.alexkrauss.scouts.application.ports.persistence.GroupRepository;
 import name.alexkrauss.scouts.domain.model.Group;
 import org.springframework.dao.OptimisticLockingFailureException;
 
