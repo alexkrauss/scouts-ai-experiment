@@ -13,11 +13,11 @@ import java.util.Optional;
 import static name.alexkrauss.scouts.infrastructure.db.generated.tables.Groups.GROUPS;
 
 @Repository
-public class GroupRepositoryImpl implements GroupRepository {
+public class DbGroupRepository implements GroupRepository {
 
     private final DSLContext dsl;
 
-    public GroupRepositoryImpl(DSLContext dsl) {
+    public DbGroupRepository(DSLContext dsl) {
         this.dsl = dsl;
     }
 
