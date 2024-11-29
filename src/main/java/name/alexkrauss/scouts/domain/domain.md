@@ -8,7 +8,7 @@ digital, to avoid repetitive paperwork.
 ## Overview
 
 * The organization consists of several *groups*, who participate in events.
-* *Scouts* are the individuals that form a group.
+* *Scouts* are the individuals that form a group. Scouts may belong to multiple groups.
 * *Events* are happenings for which the individuals must register. Events are often 
   attended by multiple groups, but not all groups always participate in all events.
 * *Registrations* are the act of a scout registering for an event. They are created by scouts
@@ -28,12 +28,12 @@ Scouts have
 * an address
 * a phone number (optional)
 * the name of the health insurance
-* allergy information
-* vaccination information
+* allergy information (may be empty)
+* vaccination information (may be empty)
 
 Furthermore, they have a list of contacts, which are usually the parents of the scout.
 A contact is a name, a phone number, an email adress and a field describing the relationship,
-e.g. (mother, father, guardian).
+e.g. (mother, father, guardian). At least one contact is mandatory.
 
 There is also a field indicating when the data was last updated or checked.
 

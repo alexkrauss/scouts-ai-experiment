@@ -11,6 +11,8 @@ They are modelled in Java using the Lombok `@Data` annotation.
 Example:
 
 ```java
+import jakarta.validation.constraints.NotBlank;
+
 /**
  * A person representing ...(describe the meaning in the domain).
  */
@@ -18,14 +20,14 @@ Example:
 @Builder(toBuilder = true)
 public class Person {
     Long id;
-    long version; 
+    long version;
 
     /**
      * Full name. 
      */
-    @NonNull
+    @NotBlank
     String name;
-    
+
     /**
      * Date of birth, which can be used to calculate the age.
      */
@@ -65,16 +67,23 @@ import lombok.Builder;
  */
 @Builder(toBuilder = true)
 public record Address(
-    @NonNull
+    @NotBlank
     String street,
     
     @NonNull
+    String additionalAddressLine,
+    
+    @NotBlank
     String city,
     
-    @NonNull
+    @Not
     String zipCode
 ) {}
 ```
+## Null
+
+We generally avoid null values and use the Optional type if something is optional.
+For String fields given by the user, we model the absence of input as an empty string, not as null.
 
 ## Constraints
 
@@ -83,14 +92,23 @@ We annotate constraints on fields as follows:
 * `@NonNull`: (lombok.NonNull) The field must not be null. This annotation
   ensures that a null check is generated.
 * Annotations from JEE validation. These are checked at runtime.
-  Examples are `@Size`, `@Min`, `@Max`, `@Pattern`, `@Email`.
+  Examples are `@Size`, `@Min`, `@Max`, `@Pattern`, `@Email`, `@NotBlank`, `@NotEmpty`.
+
+Non-empty strings are annotated with `@NotBlank`.
+
+## Collections and maps
+
+If an object contains a collection or a map, that collection or map should never be null.
+We achieve this by
+* initializing the collection or map to an empty collection or map
+* using `@NonNull` and `@Builder.Default` on the field.
+
 
 ## Special types
 
 Many things can be modeled as strings, but actually carry extra invariants, and it is helpful
 to show this in the type system, e.g. 'Email'. In this case, we define a value type that
 models the extra invariants.
-
 
 
 
