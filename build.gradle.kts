@@ -91,7 +91,7 @@ jooq {
 openApiGenerate {
     generatorName.set("spring")
     inputSpec.set("$rootDir/src/main/resources/api/scouts.api.yaml")
-    outputDir.set("$buildDir/generated/sources/openapi")
+    outputDir.set("${layout.buildDirectory.get()}/generated/sources/openapi")
     apiPackage.set("name.alexkrauss.scouts.infrastructure.rest.api")
     modelPackage.set("name.alexkrauss.scouts.infrastructure.rest.model")
     configOptions.set(mapOf(
@@ -107,7 +107,7 @@ tasks.named("compileJava") {
 
 sourceSets {
     main {
-        java.srcDir("$buildDir/generated/sources/openapi/src/main/java")
+        java.srcDir("${layout.buildDirectory.get()}/generated/sources/openapi/src/main/java")
     }
 }
 
