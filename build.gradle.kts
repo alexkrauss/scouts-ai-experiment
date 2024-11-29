@@ -1,6 +1,6 @@
 plugins {
-    id("org.springframework.boot") version "3.2.0"
-    id("io.spring.dependency-management") version "1.1.4"
+    id("org.springframework.boot") version "3.4.0"
+    id("io.spring.dependency-management") version "1.1.6"
     id("java")
     id("nu.studer.jooq") version "8.2"
     id("org.openapi.generator") version "7.10.0"
@@ -32,6 +32,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.flywaydb:flyway-core")
+    implementation("org.flywaydb:flyway-database-postgresql")
     implementation("org.postgresql:postgresql")
     compileOnly("org.projectlombok:lombok")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
@@ -44,6 +45,7 @@ dependencies {
     jooqGenerator("org.postgresql:postgresql")
 
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-api:2.7.0")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.7.0")
     implementation("org.openapitools:jackson-databind-nullable:0.2.6")
 
 }
