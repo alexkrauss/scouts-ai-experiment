@@ -1,5 +1,6 @@
 package name.alexkrauss.scouts.domain.model;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Builder;
 import lombok.Data;
@@ -7,6 +8,9 @@ import lombok.NonNull;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
+import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  * A scout is a member of the organization who can register for events.
@@ -21,17 +25,18 @@ public class Scout {
     long version;
 
     /**
-     * The group the scout belongs to.
+     * The groups the scout belongs to. May be empty.
      */
     @NonNull
-    Group group;
+    @Builder.Default
+    Set<Group> groups = new HashSet<>();
 
     /**
      * Full name of the scout, used for identification and communication.
      */
     @NonNull
-    @NotEmpty
-    private String name;
+    @NotBlank
+    String name;
 
     /**
      * Date of birth of the scout, used to calculate age.
@@ -43,18 +48,20 @@ public class Scout {
      * Home address of the scout.
      */
     @NonNull
+    @NotBlank
     String address;
 
     /**
      * Direct contact number for the scout, if available.
      */
+    @NonNull
     String phoneNumber;
 
     /**
      * Healthcare provider details for emergency situations.
      */
     @NonNull
-    @NotEmpty
+    @NotBlank
     String healthInsurance;
 
     /**
@@ -74,14 +81,12 @@ public class Scout {
      */
     @NonNull
     @NotEmpty
-    List<Contact> contacts;
+    @Builder.Default
+    List<Contact> contacts = new ArrayList<>();
 
     /**
      * Timestamp of the most recent data verification or update.
      */
     @NonNull
     LocalDate lastUpdated;
-
-
 }
-
