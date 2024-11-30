@@ -1,8 +1,12 @@
 package name.alexkrauss.scouts.infrastructure.dbmock;
 
 import name.alexkrauss.scouts.application.ports.persistence.GroupRepository;
+import name.alexkrauss.scouts.application.service.MockResetAware;
 import name.alexkrauss.scouts.domain.model.Group;
+import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 import org.springframework.dao.OptimisticLockingFailureException;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,7 +14,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
-public class GroupRepositoryMock implements GroupRepository {
+@Repository
+@Profile("db-mock")
+@Primary
+public class GroupRepositoryMock implements GroupRepository, MockResetAware {
 
     private final HashMap<Long, Group> groups = new HashMap<>();
     private final AtomicLong idSequence = new AtomicLong(1);
@@ -54,5 +61,11 @@ public class GroupRepositoryMock implements GroupRepository {
     @Override
     public List<Group> findAll() {
         return new ArrayList<>(groups.values());
+    }
+
+    @Override
+    public void reset() {
+        groups.clear();
+        idSequence.set(1);
     }
 }

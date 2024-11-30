@@ -18,9 +18,14 @@ public class GroupManagementServiceImpl implements GroupManagementService {
     public GroupManagementServiceImpl(GroupRepository groupRepository) {
         this.groupRepository = groupRepository;
     }
-
     @Override
     public Group createGroup(Group group) {
+
+        if (groupRepository.findAll().stream()
+                .anyMatch(existingGroup -> existingGroup.getName().equals(group.getName()))) {
+            throw new IllegalArgumentException("Group with name '" + group.getName() + "' already exists");
+        }
+
         return groupRepository.create(group);
     }
 

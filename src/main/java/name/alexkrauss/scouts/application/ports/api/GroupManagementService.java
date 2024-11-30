@@ -13,6 +13,7 @@ public interface GroupManagementService {
      * Creates a new scout group.
      * @param group the group to create
      * @return the created group with assigned id
+     * @throws IllegalArgumentException if a group with the same name already exists
      */
     Group createGroup(Group group);
 
