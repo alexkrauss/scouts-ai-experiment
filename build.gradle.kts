@@ -4,6 +4,7 @@ plugins {
     id("java")
     id("nu.studer.jooq") version "8.2"
     id("org.openapi.generator") version "7.10.0"
+    id("org.flywaydb.flyway") version "10.20.1" // Matches version managed by Spring Boot
 }
 
 group = "name.alexkrauss"
@@ -12,6 +13,12 @@ version = "0.0.1-SNAPSHOT"
 java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(21))
+    }
+}
+
+buildscript {
+    dependencies {
+        classpath("org.flywaydb:flyway-database-postgresql:10.20.1")
     }
 }
 
@@ -53,6 +60,12 @@ dependencies {
 
 tasks.named<Test>("test") {
     useJUnitPlatform()
+}
+
+flyway {
+    url = "jdbc:postgresql://localhost:5432/scouts"
+    user = "scouts"
+    password = "scouts"
 }
 
 jooq {
@@ -102,8 +115,13 @@ openApiGenerate {
     ))
 }
 
+
+tasks.named("generateJooq") {
+    dependsOn("flywayMigrate")
+}
 tasks.named("compileJava") {
     dependsOn("openApiGenerate")
+    dependsOn("generateJooq")
 }
 
 sourceSets {
