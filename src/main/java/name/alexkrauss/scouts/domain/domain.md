@@ -31,9 +31,10 @@ Scouts have
 * allergy information (may be empty)
 * vaccination information (may be empty)
 
-Furthermore, they have a list of contacts, which are usually the parents of the scout.
+Furthermore, they have an ordered list of contacts, which are usually the parents of the scout.
 A contact is a name, a phone number, an email adress and a field describing the relationship,
-e.g. (mother, father, guardian). At least one contact is mandatory.
+e.g. (mother, father, guardian). At least one contact is mandatory. Contacts are not entities
+but modeled as value objects.
 
 There is also a field indicating when the data was last updated or checked.
 
