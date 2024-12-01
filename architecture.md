@@ -3,7 +3,7 @@
 This is a web app backend. We record technical decisions here.
 Domain information can be found in the file domain.md.
 
-Note that each subfolder may have its own architecture.md file,
+Note that each subfolder may have its own architecture-*.md file,
 describing the architecture of that subfolder and the code patterns
 used there.
 
