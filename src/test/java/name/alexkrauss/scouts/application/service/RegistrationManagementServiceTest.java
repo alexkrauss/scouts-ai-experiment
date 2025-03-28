@@ -211,6 +211,40 @@ public class RegistrationManagementServiceTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("Scout is already registered for this event");
     }
+    
+    /**
+     * Tests that retrieving registrations for a non-existent event throws an exception.
+     * Verifies that:
+     * - Attempting to get registrations for a deleted event results in an appropriate exception
+     */
+    @Test
+    void getRegistrationsForDeletedEvent() {
+        // Create and then delete an event
+        Event tempEvent = eventRepository.create(SUMMER_CAMP.toBuilder().name("Temporary Event").build());
+        eventRepository.delete(tempEvent.getId());
+        
+        // Attempt to get registrations for the deleted event
+        assertThatThrownBy(() -> service.getRegistrationsByEvent(tempEvent.getId()))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("Event with id " + tempEvent.getId() + " does not exist");
+    }
+    
+    /**
+     * Tests that retrieving registrations for a non-existent scout throws an exception.
+     * Verifies that:
+     * - Attempting to get registrations for a deleted scout results in an appropriate exception
+     */
+    @Test
+    void getRegistrationsForDeletedScout() {
+        // Create and then delete a scout
+        Scout tempScout = scoutRepository.create(JOHN_DOE.toBuilder().name("Temporary Scout").build());
+        scoutRepository.delete(tempScout.getId());
+        
+        // Attempt to get registrations for the deleted scout
+        assertThatThrownBy(() -> service.getRegistrationsByScout(tempScout.getId()))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("Scout with id " + tempScout.getId() + " does not exist");
+    }
 
     /**
      * Helper method to build a test registration.
