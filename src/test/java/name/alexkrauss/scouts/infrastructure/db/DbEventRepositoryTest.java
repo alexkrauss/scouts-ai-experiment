@@ -50,8 +50,7 @@ class DbEventRepositoryTest {
      */
     @Test
     void createAndRetrieveEvent() {
-        Event event = SUMMER_CAMP;
-        Event savedEvent = repository.create(event);
+        Event savedEvent = repository.create(SUMMER_CAMP);
 
         assertThat(savedEvent.getId()).isNotNull();
         assertThat(savedEvent.getVersion()).isEqualTo(0);

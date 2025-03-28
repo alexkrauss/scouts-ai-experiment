@@ -1,7 +1,6 @@
 package name.alexkrauss.scouts.infrastructure.db;
 
 import name.alexkrauss.scouts.application.ports.persistence.EventRepository;
-import name.alexkrauss.scouts.application.ports.persistence.GroupRepository;
 import name.alexkrauss.scouts.domain.model.Event;
 import name.alexkrauss.scouts.domain.model.Group;
 import org.jooq.Condition;
@@ -25,11 +24,9 @@ import static name.alexkrauss.scouts.infrastructure.db.generated.tables.Groups.G
 public class DbEventRepository implements EventRepository {
 
     private final DSLContext dsl;
-    private final GroupRepository groupRepository;
 
-    public DbEventRepository(DSLContext dsl, GroupRepository groupRepository) {
+    public DbEventRepository(DSLContext dsl) {
         this.dsl = dsl;
-        this.groupRepository = groupRepository;
     }
 
     @Override

@@ -1,7 +1,6 @@
 package name.alexkrauss.scouts.application.service;
 
 import name.alexkrauss.scouts.application.ports.api.EventManagementService;
-import name.alexkrauss.scouts.application.ports.persistence.EventRepository;
 import name.alexkrauss.scouts.application.ports.persistence.GroupRepository;
 import name.alexkrauss.scouts.domain.model.Event;
 import name.alexkrauss.scouts.domain.model.Group;

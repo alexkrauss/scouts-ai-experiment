@@ -1,7 +1,6 @@
 package name.alexkrauss.scouts.domain.model;
 
 import java.time.LocalDate;
-import java.util.HashSet;
 
 /**
  * Test data for Event entities.

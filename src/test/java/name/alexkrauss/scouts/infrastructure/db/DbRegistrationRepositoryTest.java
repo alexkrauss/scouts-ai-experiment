@@ -16,9 +16,10 @@ import org.springframework.dao.OptimisticLockingFailureException;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static name.alexkrauss.scouts.domain.model.EventsTestData.*;
-import static name.alexkrauss.scouts.domain.model.RegistrationsTestData.*;
-import static name.alexkrauss.scouts.domain.model.ScoutsTestData.*;
+import static name.alexkrauss.scouts.domain.model.EventsTestData.HIKING_TRIP;
+import static name.alexkrauss.scouts.domain.model.EventsTestData.SUMMER_CAMP;
+import static name.alexkrauss.scouts.domain.model.ScoutsTestData.EMMA_SMITH;
+import static name.alexkrauss.scouts.domain.model.ScoutsTestData.JOHN_DOE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
