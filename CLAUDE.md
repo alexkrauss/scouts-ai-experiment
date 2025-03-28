@@ -38,8 +38,4 @@
   3. Generate the jOOQ classes.
   4. Implement the repository.
   5. Also generate a mock implementation of the repository, based on in-memory data structures, to be used by unit tests.
-
-## Definition of Done
-- The build works
-- All tests pass
-- Code is formatted according to the style guidelines
+- After each step, the build must work, including all tests. If this is not the case, never proceed to the next step. Instead analyze and fix the problem. If you cannot fix it, ask for help with a concise summary of the problem.
