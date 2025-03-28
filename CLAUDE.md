@@ -30,8 +30,9 @@
 - Observe all architecture conventions in architecture*.md files in the codebase. There are files for different aspects of the architecture.
 
 ## Workflow
+- Ask for user review explicitly after finishing code that will influence the following steps. The confirmations to write files do not count as review, as I will review the code in my IDE after the files have been written.
 - Always proceed in the following order:
-  1. Define data model, double checking to conform to domain.md precisely. Then ask for user review.
+  1. Define data model, double-checking to conform to domain.md precisely. Then ask for user review.
   2. Define APIs of the respective components throughout the architecture. Ask for user review for every part that has high influence on the following code.
   3. Write tests, focusing on the properties that we care about on each layer.
   4. Write the implementation and make the tests pass
