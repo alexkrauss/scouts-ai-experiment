@@ -49,9 +49,9 @@ Events have
 * a name,
 * a start and end date,
 * a meeting point
-* a location
-* a list of groups that can participate in the event.
-* a cost for participation.
+* a location (string)
+* a list of groups that can participate in the event (may be empty)
+* a cost for participation. (string, optional)
 
 Further, there is a text for additional information.
 
