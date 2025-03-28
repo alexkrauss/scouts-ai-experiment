@@ -112,6 +112,15 @@ public class DbRegistrationRepository implements RegistrationRepository {
     public List<Registration> findByScoutId(long scoutId) {
         return findRegistrationsByCondition(REGISTRATIONS.SCOUT_ID.eq(scoutId));
     }
+    
+    @Override
+    public boolean existsByEventIdAndScoutId(long eventId, long scoutId) {
+        return dsl.selectCount()
+                .from(REGISTRATIONS)
+                .where(REGISTRATIONS.EVENT_ID.eq(eventId))
+                .and(REGISTRATIONS.SCOUT_ID.eq(scoutId))
+                .fetchOne(0, Integer.class) > 0;
+    }
 
     private List<Registration> findRegistrationsByCondition(Condition condition) {
         Result<Record> result = dsl.select()

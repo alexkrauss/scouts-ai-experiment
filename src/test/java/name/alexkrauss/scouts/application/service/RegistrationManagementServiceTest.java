@@ -190,6 +190,27 @@ public class RegistrationManagementServiceTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("does not exist");
     }
+    
+    /**
+     * Tests that attempting to register the same scout for the same event twice
+     * results in an appropriate exception.
+     * Verifies that:
+     * - The first registration succeeds
+     * - The second duplicate registration fails with the correct error message
+     */
+    @Test
+    void rejectDuplicateRegistration() {
+        // Register John for summer camp
+        Registration firstRegistration = buildTestRegistration(johnDoe, summerCamp);
+        service.createRegistration(firstRegistration);
+        
+        // Try to register John for summer camp again
+        Registration duplicateRegistration = buildTestRegistration(johnDoe, summerCamp);
+        
+        assertThatThrownBy(() -> service.createRegistration(duplicateRegistration))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("Scout is already registered for this event");
+    }
 
     /**
      * Helper method to build a test registration.

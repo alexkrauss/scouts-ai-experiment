@@ -304,4 +304,34 @@ class DbRegistrationRepositoryTest {
         // Verify registration is gone
         assertThat(repository.findById(registration.getId())).isEmpty();
     }
+    
+    /**
+     * Tests existsByEventIdAndScoutId method.
+     * Verifies that:
+     * - existsByEventIdAndScoutId returns false when no registration exists
+     * - existsByEventIdAndScoutId returns true when a registration exists for the same scout and event
+     * - existsByEventIdAndScoutId still returns false for different scout/event combinations
+     */
+    @Test
+    void testExistsByEventIdAndScoutId() {
+        // Initially no registrations exist
+        assertThat(repository.existsByEventIdAndScoutId(savedSummerCamp.getId(), savedJohn.getId())).isFalse();
+        
+        // Create a registration
+        repository.create(Registration.builder()
+                .scout(savedJohn)
+                .event(savedSummerCamp)
+                .note("Test note")
+                .status(RegistrationStatus.PENDING)
+                .registrationDate(LocalDateTime.now())
+                .accountId("test-account")
+                .build());
+        
+        // Check that the duplicate detection works
+        assertThat(repository.existsByEventIdAndScoutId(savedSummerCamp.getId(), savedJohn.getId())).isTrue();
+        
+        // Different combinations should still return false
+        assertThat(repository.existsByEventIdAndScoutId(savedHikingTrip.getId(), savedJohn.getId())).isFalse();
+        assertThat(repository.existsByEventIdAndScoutId(savedSummerCamp.getId(), savedEmma.getId())).isFalse();
+    }
 }

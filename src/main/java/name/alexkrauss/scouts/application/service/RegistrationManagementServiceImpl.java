@@ -41,11 +41,19 @@ public class RegistrationManagementServiceImpl implements RegistrationManagement
 
     @Override
     public Registration createRegistration(Registration registration) {
+        Long scoutId = registration.getScout().getId();
+        Long eventId = registration.getEvent().getId();
+        
         // Verify that the scout exists
-        verifyScoutExists(registration.getScout().getId());
+        verifyScoutExists(scoutId);
         
         // Verify that the event exists
-        verifyEventExists(registration.getEvent().getId());
+        verifyEventExists(eventId);
+        
+        // Check for duplicate registration
+        if (registrationRepository.existsByEventIdAndScoutId(eventId, scoutId)) {
+            throw new IllegalArgumentException("Scout is already registered for this event");
+        }
         
         return registrationRepository.create(registration);
     }

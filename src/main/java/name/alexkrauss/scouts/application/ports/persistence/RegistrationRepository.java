@@ -58,5 +58,14 @@ public interface RegistrationRepository {
      * @return list of registrations for the scout
      */
     List<Registration> findByScoutId(long scoutId);
+    
+    /**
+     * Checks if a scout is already registered for a specific event.
+     *
+     * @param eventId the id of the event
+     * @param scoutId the id of the scout
+     * @return true if the scout is already registered for the event, false otherwise
+     */
+    boolean existsByEventIdAndScoutId(long eventId, long scoutId);
 
 }

@@ -76,6 +76,14 @@ public class RegistrationRepositoryMock implements RegistrationRepository, MockR
                 .filter(registration -> registration.getScout().getId() == scoutId)
                 .collect(Collectors.toList());
     }
+    
+    @Override
+    public boolean existsByEventIdAndScoutId(long eventId, long scoutId) {
+        return registrations.values().stream()
+                .anyMatch(registration -> 
+                    registration.getEvent().getId() == eventId && 
+                    registration.getScout().getId() == scoutId);
+    }
 
     @Override
     public void reset() {
