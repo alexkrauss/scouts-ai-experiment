@@ -95,6 +95,7 @@ jooq {
                         packageName = "name.alexkrauss.scouts.infrastructure.db.generated"
                         directory = "build/generated/sources/jooq/main"
                     }
+                    logging = org.jooq.meta.jaxb.Logging.WARN
                 }
             }
         }
@@ -128,4 +129,3 @@ sourceSets {
         java.srcDir("${layout.buildDirectory.get()}/generated/sources/openapi/src/main/java")
     }
 }
-
